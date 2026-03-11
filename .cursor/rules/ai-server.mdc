@@ -1,0 +1,33 @@
+---
+description: Rules for ai-server - Python/FastAPI code style, safety, and structure
+globs: ai-server/**/*
+alwaysApply: false
+---
+
+# AI server rules (ai-server/)
+
+When editing or adding code under `ai-server/`, follow these rules.
+
+## 1. Python style
+- Use Python 3 type hints for function parameters and return values.
+- Prefer clear names and small functions; avoid long blocks or deep nesting.
+- Do not add comments unless they clarify non-obvious behavior or critical logic.
+
+## 2. FastAPI usage
+- Use FastAPI dependency injection for shared logic (e.g. config, clients).
+- Define request/response models with Pydantic where applicable.
+- Return consistent response shapes and HTTP status codes from endpoints.
+
+## 3. Error handling
+- Validate inputs and handle errors explicitly; do not swallow exceptions.
+- Use HTTPException or custom exception handlers with appropriate status codes.
+- Log errors where useful for debugging.
+
+## 4. Dependencies and structure
+- Keep dependencies in `requirements.txt` with pinned or minimal version ranges.
+- Prefer existing utilities and helpers; reuse before adding new modules.
+- Keep processing logic separate from HTTP layer (e.g. routers vs. service functions).
+
+## 5. No `any` or untyped code
+- Avoid `Any`; use concrete types or TypedDict/dataclasses/Pydantic models.
+- Type external inputs (e.g. request body, query params) explicitly.
