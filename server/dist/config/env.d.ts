@@ -7,6 +7,7 @@ declare const envSchema: z.ZodObject<{
     REDIS_PORT: z.ZodDefault<z.ZodEffects<z.ZodString, number, string>>;
     REDIS_PASSWORD: z.ZodDefault<z.ZodOptional<z.ZodString>>;
     JWT_SECRET: z.ZodDefault<z.ZodOptional<z.ZodString>>;
+    JWT_EXPIRES_IN: z.ZodDefault<z.ZodOptional<z.ZodString>>;
     R2_ACCOUNT_ID: z.ZodOptional<z.ZodString>;
     R2_ACCESS_KEY_ID: z.ZodOptional<z.ZodString>;
     R2_SECRET_ACCESS_KEY: z.ZodOptional<z.ZodString>;
@@ -21,6 +22,7 @@ declare const envSchema: z.ZodObject<{
     REDIS_PORT: number;
     REDIS_PASSWORD: string;
     JWT_SECRET: string;
+    JWT_EXPIRES_IN: string;
     VIDEO_MAX_FILE_SIZE: number;
     R2_ACCOUNT_ID?: string | undefined;
     R2_ACCESS_KEY_ID?: string | undefined;
@@ -35,6 +37,7 @@ declare const envSchema: z.ZodObject<{
     REDIS_PORT?: string | undefined;
     REDIS_PASSWORD?: string | undefined;
     JWT_SECRET?: string | undefined;
+    JWT_EXPIRES_IN?: string | undefined;
     R2_ACCOUNT_ID?: string | undefined;
     R2_ACCESS_KEY_ID?: string | undefined;
     R2_SECRET_ACCESS_KEY?: string | undefined;
@@ -50,6 +53,7 @@ export declare const env: {
     REDIS_PORT: number;
     REDIS_PASSWORD: string;
     JWT_SECRET: string;
+    JWT_EXPIRES_IN: string;
     VIDEO_MAX_FILE_SIZE: number;
     R2_ACCOUNT_ID?: string | undefined;
     R2_ACCESS_KEY_ID?: string | undefined;

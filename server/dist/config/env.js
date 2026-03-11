@@ -15,6 +15,7 @@ const envSchema = zod_1.z.object({
     REDIS_PORT: zod_1.z.string().transform(Number).default('6379'),
     REDIS_PASSWORD: zod_1.z.string().optional().default(''),
     JWT_SECRET: zod_1.z.string().optional().default(''),
+    JWT_EXPIRES_IN: zod_1.z.string().optional().default('7d'),
     R2_ACCOUNT_ID: zod_1.z.string().optional(),
     R2_ACCESS_KEY_ID: zod_1.z.string().optional(),
     R2_SECRET_ACCESS_KEY: zod_1.z.string().optional(),

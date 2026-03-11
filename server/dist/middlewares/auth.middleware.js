@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authMiddleware = void 0;
+const jwt_1 = require("../utils/jwt");
 const authMiddleware = (req, _res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith('Bearer ')) {
@@ -10,7 +11,8 @@ const authMiddleware = (req, _res, next) => {
     }
     const token = authHeader.slice(7);
     try {
-        req.user = { id: token };
+        const payload = (0, jwt_1.verifyToken)(token);
+        req.user = { id: payload.userId };
         next();
     }
     catch {

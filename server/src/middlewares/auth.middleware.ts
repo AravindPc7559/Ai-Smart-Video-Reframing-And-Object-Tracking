@@ -1,6 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { AuthenticatedRequest } from '../types';
 import { AppError } from './error.middleware';
+import { verifyToken } from '../utils/jwt';
 
 export const authMiddleware = (
   req: AuthenticatedRequest,
@@ -15,7 +16,8 @@ export const authMiddleware = (
   }
   const token = authHeader.slice(7);
   try {
-    req.user = { id: token };
+    const payload = verifyToken(token);
+    req.user = { id: payload.userId };
     next();
   } catch {
     const err = new Error('Invalid token') as AppError;
