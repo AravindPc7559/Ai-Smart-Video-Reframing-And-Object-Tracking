@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UPLOAD_FIELD = exports.videoController = void 0;
+exports.videoController = void 0;
 const video_service_1 = require("./video.service");
 const response_1 = require("../../utils/response");
-const UPLOAD_FIELD = 'video';
-exports.UPLOAD_FIELD = UPLOAD_FIELD;
+const video_utils_1 = require("./video.utils");
 exports.videoController = {
     async upload(req, res, next) {
         try {
@@ -36,6 +35,35 @@ exports.videoController = {
         }
         catch (err) {
             next(err instanceof Error ? err : new Error('Video upload failed'));
+        }
+    },
+    async process(req, res, next) {
+        try {
+            const { videoId, bbox, ratio } = req.body ?? {};
+            if (!videoId || typeof videoId !== 'string' || videoId.trim() === '') {
+                const err = new Error('videoId is required');
+                err.statusCode = 400;
+                return next(err);
+            }
+            if (!(0, video_utils_1.validateBbox)(bbox)) {
+                const err = new Error('Invalid bounding box');
+                err.statusCode = 400;
+                return next(err);
+            }
+            if (!ratio || typeof ratio !== 'string' || !(0, video_service_1.isAllowedRatio)(ratio)) {
+                const err = new Error('Invalid ratio. Supported: 9:16, 1:1, 16:9');
+                err.statusCode = 400;
+                return next(err);
+            }
+            const result = await video_service_1.videoService.requestProcessing({
+                videoId: videoId.trim(),
+                bbox: { x: bbox.x, y: bbox.y, width: bbox.width, height: bbox.height },
+                ratio,
+            });
+            (0, response_1.sendSuccess)(res, { jobId: result.jobId, status: result.status }, 202);
+        }
+        catch (err) {
+            next(err);
         }
     },
 };

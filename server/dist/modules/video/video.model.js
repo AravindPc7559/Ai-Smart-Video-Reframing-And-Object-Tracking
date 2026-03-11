@@ -43,6 +43,11 @@ const videoSchema = new mongoose_1.Schema({
     fileSize: { type: Number, required: true },
     mimeType: { type: String, required: true },
     uploadedBy: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
+    storagePath: { type: String },
+    duration: { type: Number },
+    resolution: { type: String },
+    status: { type: String, default: 'uploaded' },
+    processedVideo: { type: String },
 }, { timestamps: true });
 exports.VideoModel = mongoose_1.default.models.Video ?? mongoose_1.default.model('Video', videoSchema);
 //# sourceMappingURL=video.model.js.map

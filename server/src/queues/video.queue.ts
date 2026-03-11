@@ -1,5 +1,4 @@
 import { Queue } from 'bullmq';
-import { createRedisConnection } from '../config/redis';
 import { env } from '../config/env';
 
 const connection = {
@@ -8,7 +7,15 @@ const connection = {
   ...(env.REDIS_PASSWORD && { password: env.REDIS_PASSWORD }),
 };
 
-export const exampleQueue = new Queue('example', {
+export interface VideoProcessingPayload {
+  jobId: string;
+  videoId: string;
+  videoPath: string;
+  bbox: [number, number, number, number];
+  ratio: string;
+}
+
+export const videoProcessingQueue = new Queue<VideoProcessingPayload>('video-processing', {
   connection,
   defaultJobOptions: {
     attempts: 3,
@@ -17,4 +24,4 @@ export const exampleQueue = new Queue('example', {
   },
 });
 
-export const getConnection = () => createRedisConnection();
+export const VIDEO_PROCESSING_JOB_NAME = 'process-video';

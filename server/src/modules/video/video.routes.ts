@@ -1,8 +1,8 @@
 import { Router, Request } from 'express';
 import multer from 'multer';
 import { authMiddleware } from '../../middlewares/auth.middleware';
-import { videoController, UPLOAD_FIELD } from './video.controller';
-import { ALLOWED_VIDEO_MIME_TYPES } from './video.types';
+import { videoController } from './video.controller';
+import { ALLOWED_VIDEO_MIME_TYPES, UPLOAD_FIELD } from './video.types';
 import { env } from '../../config/env';
 import { AppError } from '../../middlewares/error.middleware';
 
@@ -39,3 +39,7 @@ router.post(
 );
 
 export const videoRoutes = router;
+
+const processRouter = Router();
+processRouter.post('/process', videoController.process);
+export const videoProcessRoutes = processRouter;

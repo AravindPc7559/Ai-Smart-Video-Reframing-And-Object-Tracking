@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.videoRoutes = void 0;
+exports.videoProcessRoutes = exports.videoRoutes = void 0;
 const express_1 = require("express");
 const multer_1 = __importDefault(require("multer"));
 const auth_middleware_1 = require("../../middlewares/auth.middleware");
@@ -27,6 +27,9 @@ const upload = (0, multer_1.default)({
     limits: { fileSize: env_1.env.VIDEO_MAX_FILE_SIZE },
 });
 const router = (0, express_1.Router)();
-router.post('/upload', auth_middleware_1.authMiddleware, upload.single(video_controller_1.UPLOAD_FIELD), video_controller_1.videoController.upload);
+router.post('/upload', auth_middleware_1.authMiddleware, upload.single(video_types_1.UPLOAD_FIELD), video_controller_1.videoController.upload);
 exports.videoRoutes = router;
+const processRouter = (0, express_1.Router)();
+processRouter.post('/process', video_controller_1.videoController.process);
+exports.videoProcessRoutes = processRouter;
 //# sourceMappingURL=video.routes.js.map

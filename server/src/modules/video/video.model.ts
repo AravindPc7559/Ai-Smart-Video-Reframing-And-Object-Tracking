@@ -8,6 +8,11 @@ export interface IVideo extends Document {
   fileSize: number;
   mimeType: string;
   uploadedBy: Types.ObjectId;
+  storagePath?: string;
+  duration?: number;
+  resolution?: string;
+  status?: string;
+  processedVideo?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -21,6 +26,11 @@ export type VideoPlain = {
   fileSize: number;
   mimeType: string;
   uploadedBy: Types.ObjectId;
+  storagePath?: string;
+  duration?: number;
+  resolution?: string;
+  status?: string;
+  processedVideo?: string;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -34,6 +44,11 @@ const videoSchema = new Schema<IVideo>(
     fileSize: { type: Number, required: true },
     mimeType: { type: String, required: true },
     uploadedBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    storagePath: { type: String },
+    duration: { type: Number },
+    resolution: { type: String },
+    status: { type: String, default: 'uploaded' },
+    processedVideo: { type: String },
   },
   { timestamps: true }
 );

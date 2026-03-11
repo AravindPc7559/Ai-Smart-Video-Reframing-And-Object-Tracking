@@ -1,6 +1,5 @@
-declare function isAllowedMimeType(mimeType: string): boolean;
+import { ProcessVideoInput } from './video.types';
 export declare const videoService: {
-    isAllowedMimeType: typeof isAllowedMimeType;
     uploadVideo(userId: string, file: {
         buffer: Buffer;
         originalname: string;
@@ -13,6 +12,11 @@ export declare const videoService: {
         id: string;
         fileUrl: string;
     }>;
+    requestProcessing(input: ProcessVideoInput): Promise<{
+        jobId: string;
+        status: "queued";
+    }>;
+    setProcessed(videoId: string, outputPath: string): Promise<void>;
 };
-export {};
+export declare function isAllowedRatio(ratio: string): boolean;
 //# sourceMappingURL=video.service.d.ts.map

@@ -7,6 +7,11 @@ export interface IVideo extends Document {
     fileSize: number;
     mimeType: string;
     uploadedBy: Types.ObjectId;
+    storagePath?: string;
+    duration?: number;
+    resolution?: string;
+    status?: string;
+    processedVideo?: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -19,6 +24,11 @@ export type VideoPlain = {
     fileSize: number;
     mimeType: string;
     uploadedBy: Types.ObjectId;
+    storagePath?: string;
+    duration?: number;
+    resolution?: string;
+    status?: string;
+    processedVideo?: string;
     createdAt: Date;
     updatedAt: Date;
 };
