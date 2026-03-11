@@ -6,9 +6,22 @@ import { createVideoWorker } from './queues/workers/video.worker';
 
 const start = async (): Promise<void> => {
   await connectDb();
-  createVideoWorker();
-  app.listen(env.PORT, () => {
+  const worker = createVideoWorker();
+  worker.on('error', (err) => {
+    logger.warn({ err }, 'Redis unavailable; video processing disabled');
+  });
+  const server = app.listen(env.PORT, () => {
     logger.info({ port: env.PORT }, 'Server started');
+  });
+  server.on('error', (err: NodeJS.ErrnoException) => {
+    if (err.code === 'EADDRINUSE') {
+      logger.error(
+        { port: env.PORT },
+        `Port ${env.PORT} is already in use. Stop the other process or set PORT to a different number.`
+      );
+      process.exit(1);
+    }
+    throw err;
   });
 };
 

@@ -5,6 +5,8 @@ const connection = {
   host: env.REDIS_HOST,
   port: env.REDIS_PORT,
   ...(env.REDIS_PASSWORD && { password: env.REDIS_PASSWORD }),
+  connectTimeout: 2000,
+  retryStrategy: (times: number) => (times <= 3 ? 1000 : null),
 };
 
 export interface VideoProcessingPayload {

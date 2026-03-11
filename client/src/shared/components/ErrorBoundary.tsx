@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Component } from 'react'
-import { Button } from './Button'
+import { Button } from '@/components/ui'
 
 type Props = {
   children: ReactNode
