@@ -1,0 +1,48 @@
+---
+description: Backend rules for server - code style, safety, testing, and reuse
+globs: server/**/*
+alwaysApply: false
+---
+
+# Backend rules (server/)
+
+When editing or adding code under `server/`, follow these rules.
+
+## 1. No unwanted comments
+- Do not add comments unless they clarify non-obvious behavior or critical business logic.
+- Prefer clear names and small functions over comment blocks.
+
+## 2. Null checks and try/catch
+- Add null/undefined checks before using values that may be missing.
+- Wrap risky operations (I/O, parsing, external calls) in try/catch and handle errors explicitly.
+- Do not leave empty catch blocks; log or rethrow as appropriate.
+
+## 3. Optional chaining and optional parameters
+- Use optional chaining when accessing nested or possibly undefined values, e.g. `data?.label`, `user?.profile?.name`.
+- Use optional parameters and default values where it makes sense instead of manual undefined checks.
+
+## 4. Proper error handling
+- Handle errors at the right layer (e.g. route handlers, service boundaries).
+- Return consistent error shapes and HTTP status codes.
+- Avoid swallowing errors; log and/or propagate so failures are visible and debuggable.
+
+## 5. Reuse existing code
+- Before writing new logic, search the codebase for existing utilities, helpers, or similar logic.
+- Prefer importing and reusing rather than duplicating. Refactor shared logic into shared modules if needed.
+
+## 6. Clean and understandable codebase
+- Keep functions small and focused.
+- Use clear, consistent naming and structure so the code is easy to read and maintain.
+
+## 7. Proper types (no `any`)
+- Use explicit types for variables, function parameters, and return values.
+- Do not use `any`; use proper types, interfaces, or generics.
+- Rely on TypeScript for type safety; define or import types instead of escaping with `any`.
+
+## 8. Playwright tests for new functionality
+- When adding or changing functionality under `server/`, add or update Playwright tests that cover that behavior.
+- Integrate the test into the existing test suite so it runs in CI/local checks.
+
+## 9. JSDoc for util functions
+- Add short, clear JSDoc for every utility function (parameters, return value, and a one-line description).
+- Keep JSDoc minimal and accurate; avoid redundant or noisy comments.

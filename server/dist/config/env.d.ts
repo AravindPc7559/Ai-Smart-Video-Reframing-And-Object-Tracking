@@ -1,0 +1,62 @@
+import { z } from 'zod';
+declare const envSchema: z.ZodObject<{
+    NODE_ENV: z.ZodDefault<z.ZodEnum<["development", "production", "test"]>>;
+    PORT: z.ZodDefault<z.ZodEffects<z.ZodString, number, string>>;
+    MONGODB_URI: z.ZodString;
+    REDIS_HOST: z.ZodDefault<z.ZodString>;
+    REDIS_PORT: z.ZodDefault<z.ZodEffects<z.ZodString, number, string>>;
+    REDIS_PASSWORD: z.ZodDefault<z.ZodOptional<z.ZodString>>;
+    JWT_SECRET: z.ZodDefault<z.ZodOptional<z.ZodString>>;
+    R2_ACCOUNT_ID: z.ZodOptional<z.ZodString>;
+    R2_ACCESS_KEY_ID: z.ZodOptional<z.ZodString>;
+    R2_SECRET_ACCESS_KEY: z.ZodOptional<z.ZodString>;
+    R2_BUCKET_NAME: z.ZodOptional<z.ZodString>;
+    R2_PUBLIC_URL: z.ZodOptional<z.ZodString>;
+    VIDEO_MAX_FILE_SIZE: z.ZodDefault<z.ZodOptional<z.ZodEffects<z.ZodString, number, string>>>;
+}, "strip", z.ZodTypeAny, {
+    NODE_ENV: "development" | "production" | "test";
+    PORT: number;
+    MONGODB_URI: string;
+    REDIS_HOST: string;
+    REDIS_PORT: number;
+    REDIS_PASSWORD: string;
+    JWT_SECRET: string;
+    VIDEO_MAX_FILE_SIZE: number;
+    R2_ACCOUNT_ID?: string | undefined;
+    R2_ACCESS_KEY_ID?: string | undefined;
+    R2_SECRET_ACCESS_KEY?: string | undefined;
+    R2_BUCKET_NAME?: string | undefined;
+    R2_PUBLIC_URL?: string | undefined;
+}, {
+    MONGODB_URI: string;
+    NODE_ENV?: "development" | "production" | "test" | undefined;
+    PORT?: string | undefined;
+    REDIS_HOST?: string | undefined;
+    REDIS_PORT?: string | undefined;
+    REDIS_PASSWORD?: string | undefined;
+    JWT_SECRET?: string | undefined;
+    R2_ACCOUNT_ID?: string | undefined;
+    R2_ACCESS_KEY_ID?: string | undefined;
+    R2_SECRET_ACCESS_KEY?: string | undefined;
+    R2_BUCKET_NAME?: string | undefined;
+    R2_PUBLIC_URL?: string | undefined;
+    VIDEO_MAX_FILE_SIZE?: string | undefined;
+}>;
+export declare const env: {
+    NODE_ENV: "development" | "production" | "test";
+    PORT: number;
+    MONGODB_URI: string;
+    REDIS_HOST: string;
+    REDIS_PORT: number;
+    REDIS_PASSWORD: string;
+    JWT_SECRET: string;
+    VIDEO_MAX_FILE_SIZE: number;
+    R2_ACCOUNT_ID?: string | undefined;
+    R2_ACCESS_KEY_ID?: string | undefined;
+    R2_SECRET_ACCESS_KEY?: string | undefined;
+    R2_BUCKET_NAME?: string | undefined;
+    R2_PUBLIC_URL?: string | undefined;
+};
+export type Env = z.infer<typeof envSchema>;
+export {};
+//# sourceMappingURL=env.d.ts.map

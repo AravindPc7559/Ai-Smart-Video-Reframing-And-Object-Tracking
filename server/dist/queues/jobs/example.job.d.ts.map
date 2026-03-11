@@ -1,0 +1,1 @@
+{"version":3,"file":"example.job.d.ts","sourceRoot":"","sources":["../../../src/queues/jobs/example.job.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,cAAc;IAC7B,OAAO,EAAE,MAAM,CAAC;IAChB,OAAO,CAAC,EAAE,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,CAAC;CACnC;AAED,eAAO,MAAM,aAAa,GAAU,MAAM,cAAc,KAAG,OAAO,CAAC,MAAM,CAGxE,CAAC"}

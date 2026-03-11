@@ -1,0 +1,1 @@
+{"version":3,"file":"example.controller.d.ts","sourceRoot":"","sources":["../../../src/modules/example/example.controller.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAU5C,eAAO,MAAM,iBAAiB;sBACJ,OAAO,OAAO,QAAQ,GAAG,OAAO,CAAC,IAAI,CAAC;uBASrC,OAAO,OAAO,QAAQ,GAAG,OAAO,CAAC,IAAI,CAAC;CAahE,CAAC"}
