@@ -20,3 +20,17 @@ export const uploadVideoThunk = createAsyncThunk(
     }
   }
 )
+
+export const processVideoThunk = createAsyncThunk(
+  'video/process',
+  async (
+    payload: videoService.ProcessVideoPayload,
+    { rejectWithValue }
+  ) => {
+    try {
+      return await videoService.processVideo(payload)
+    } catch (err) {
+      return rejectWithValue(err instanceof Error ? err.message : 'Process failed')
+    }
+  }
+)

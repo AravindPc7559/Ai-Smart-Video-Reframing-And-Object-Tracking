@@ -42,3 +42,27 @@ export async function uploadVideo(
   }
   return result
 }
+
+export type ProcessVideoBbox = {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+export type ProcessVideoPayload = {
+  videoId: string
+  bbox: ProcessVideoBbox
+  ratio: string
+}
+
+export type ProcessVideoResult = {
+  jobId: string
+  status: string
+}
+
+export async function processVideo(payload: ProcessVideoPayload): Promise<ProcessVideoResult> {
+  const { data } = await apiClient.post<ProcessVideoResult>('/videos/process', payload)
+  if (!data?.jobId) throw new Error('Invalid process response')
+  return { jobId: data.jobId, status: data.status ?? 'queued' }
+}
